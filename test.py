@@ -1,6 +1,4 @@
 import argparse
-
-import Entrypage
 from pywebio.input import *
 from pywebio.output import *
 from pywebio import start_server
@@ -13,13 +11,16 @@ app = Flask(__name__)
 
 def start():
 
-    from Entrypage import Moidata
+    from .Entrypage import Moidata
     mo=Moidata.open(windows=True,autoport=True)
+    
 app.add_url_rule('/tool', 'webio.view', webio_view(start)
                  , methods=['GET', 'POST', 'OPTIONS'])
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--port", type=int, default=8080)
     args = parser.parse_args()
-    start_server(start, port=args.port)
+    start_server(start, port=args.port,debug=True,max_payload_size='10000000',reconnect_timeout=4)
