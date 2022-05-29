@@ -11,9 +11,9 @@ app = Flask(__name__)
 
 def start():
 
-    from Entrypage import Moidata
-    mo=Moidata.open(windows=True,autoport=True)
-    put_text('hjhhj')
+    from startmoieintry import Entry
+    mo=Entry.open(getentry=True)
+    
 app.add_url_rule('/tool', 'webio.view', webio_view(start)
                  , methods=['GET', 'POST', 'OPTIONS'])
 
